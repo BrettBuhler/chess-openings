@@ -1,0 +1,37 @@
+.MainPage {
+    height: 98vh;
+    background-image: url('https://cdn.pixabay.com/photo/2015/12/19/02/12/texture-1099399_1280.jpg');
+}
+
+.TheBoard {
+    width: min-content;
+    margin: auto;
+    border: 3px solid rgba(0, 0, 0, 0.817);
+    padding: 10px;
+    border-radius: 5px;
+    margin-top: 10px;
+    background-color: beige;
+    box-shadow: 4px 4px 4px black;
+}
+
+.OpeningMasterMenu {
+    justify-content: center;
+    z-index: 6;
+    position: absolute;
+    background-color: black;
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/19/11/19/chess-board-1838696_1280.jpg");
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 2px;
+}
+
+li {
+    padding-top: 2px;
+}
+
+.buttonGroup {
+    width: 50%;
+    max-height: 40px;
+}
