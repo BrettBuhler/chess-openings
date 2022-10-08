@@ -1,7 +1,7 @@
 import React from "react"
 import { Button, Typography } from "@mui/material"
 
-const OpeningMasterMenu = ({displayMenu, h, w, modeHandler}) => {
+const OpeningMasterMenu = ({displayMenu, h, w, modeHandler, flipChess}) => {
   const square = h > w ? w : h
 
   const getHelp = () => {
@@ -17,6 +17,7 @@ const OpeningMasterMenu = ({displayMenu, h, w, modeHandler}) => {
           <li><Button className="buttonGroup" variant="contained"value='new line' onClick={modeHandler}>New Line</Button></li>
           <li><Button className="buttonGroup" variant="contained"value='edit' onClick={modeHandler}>Edit</Button></li>
           <li><Button className="buttonGroup" variant="contained"value='help' onClick={getHelp}>Help</Button></li>
+          <li><Button className='buttonGroup' variant="contained" value='flip' onClick={flipChess}>Flip Board</Button></li>
         </ul>
       </div>
     )

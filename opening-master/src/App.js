@@ -12,14 +12,14 @@ import { useState, useEffect } from 'react';
 import OpeningMasterMenu from './components/Menu';
 import { Chess } from 'chess.js'
 
-const PlayMode = ({ mode, displayMenu, width, height, user, setDisplayMenu }) => {
+const PlayMode = ({ mode, displayMenu, width, height, user, setDisplayMenu, side }) => {
   if (mode === 'new line' && displayMenu === false){
     return (
-      <NewLine mode={mode} displayMenu={displayMenu} width={width} height={height} user={user} setDisplayMenu={setDisplayMenu}/>
+      <NewLine mode={mode} displayMenu={displayMenu} width={width} height={height} user={user} setDisplayMenu={setDisplayMenu} side={side}/>
     )
   } else {
     return (
-      <Chessboard boardWidth={width < height ? width * 0.8: height * 0.8}/>
+      <Chessboard boardWidth={width < height ? width * 0.8: height * 0.8} boardOrientation={side}/>
     )
   }
 }
@@ -27,11 +27,15 @@ const PlayMode = ({ mode, displayMenu, width, height, user, setDisplayMenu }) =>
 const App = () => {
   const [width, setWidth] = useState(window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth)
   const [height, setHeight] = useState(window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight)
+  const [side, setSide] = useState('white')
   const [mode, setMode] = useState('default')
   const [displayMenu, setDisplayMenu] = useState(true)
   const [chess, setChess] =useState(new Chess())
   const [user, setUser] = useState('')
 
+  useEffect(()=>{
+    setSide('white')
+  },[])
   useEffect(()=>{
     setUser('guest')
   },[])
@@ -41,6 +45,15 @@ const App = () => {
     const h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
     setWidth(w)
     setHeight(h)
+  }
+
+  const flipChess = () => {
+    console.log(side)
+    if (side == 'white'){
+      setSide('black')
+    } else {
+      setSide('white')
+    }
   }
 
   const modeHandler = (event) => {
@@ -66,12 +79,12 @@ const App = () => {
         setMode={setMode}
         setUser={setUser}
         user = {user}
+        flipChess={flipChess}
       />
       <div className='TheBoard'>
-        <OpeningMasterMenu displayMenu={displayMenu} h={height} w={width} modeHandler={modeHandler}/>
-        <PlayMode mode={mode} height={height} width={width} displayMenu={displayMenu} user={user} setDisplayMenu={setDisplayMenu} />
+        <OpeningMasterMenu displayMenu={displayMenu} h={height} w={width} modeHandler={modeHandler} flipChess={flipChess}/>
+        <PlayMode mode={mode} height={height} width={width} displayMenu={displayMenu} user={user} setDisplayMenu={setDisplayMenu} side={side}/>
       </div>
-      <div>{mode}</div>
     </div>
     </GoogleOAuthProvider>
   )

@@ -9,7 +9,7 @@ const TimeOut = ({setDisplayMenu}) => {
     }, 1000)
 }
 
-const NewLine = ({user, setDisplayMenu, width, height }) => {
+const NewLine = ({user, setDisplayMenu, width, height, side }) => {
     const square = width < height ? width : height
     const [chess, setChess] = useState(new Chess())
     const [fenList, setFenList] = useState([])
@@ -66,7 +66,7 @@ const NewLine = ({user, setDisplayMenu, width, height }) => {
     } else {
         return (
             <div>
-            <Chessboard boardWidth={width < height ? width * 0.8: height * 0.8} onPieceDrop={onDrop} position={chess.fen()}/>
+            <Chessboard boardWidth={width < height ? width * 0.8: height * 0.8} onPieceDrop={onDrop} position={chess.fen()} boardOrientation={side}/>
             <button onClick={getFen}>GET FEN</button>
             <button onClick={getPos}>GET POS</button>
             </div>
